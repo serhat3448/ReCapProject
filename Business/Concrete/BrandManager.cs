@@ -35,7 +35,7 @@ namespace Business.Concrete
 
         public List<Brand> GetAll()
         {
-            throw new NotImplementedException();
+            return _brandDal.GetAll();
         }
 
         public Brand GetById(int id)

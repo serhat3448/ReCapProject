@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,14 @@ namespace Business.Concrete
 {
     public class ColorManager : IColorService
     {
+        IColorDal _colorDal;
+        public ColorManager(IColorDal brandDal)
+        {
+            _colorDal = brandDal;
+        }
         public void Add(Color color)
         {
-            throw new NotImplementedException();
+            _colorDal.Add(color);
         }
 
         public void Delete(Color color)
@@ -20,7 +26,7 @@ namespace Business.Concrete
 
         public List<Color> GetAll()
         {
-            throw new NotImplementedException();
+            return _colorDal.GetAll();
         }
 
         public Color GetById(int id)
