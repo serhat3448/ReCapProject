@@ -10,48 +10,40 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            // CarTest();
-            //BrandTest();
-            //ColorTest();
-            CarDtoTest();
+
+            UserAddTest();
+            CustomerAddTest();
+            
 
         }
 
-        private static void CarDtoTest()
-        {
-            CarManager carManager = new CarManager(new EfCarDal());
 
-            foreach (var car in carManager.GetCarDetails())
+        private static void UserAddTest()
+        {
+
+            UserManager userManager = new UserManager(new EfUserDal());
+            var result = userManager.Add(new User
             {
-                Console.WriteLine(car.CarName + "/" + car.ColorName + "/" + car.BrandName + "/" + car.DailyPrice);
-            }
+                FirstName = "Serhat",
+                LastName = "Doğru",
+                Email = "serhatdogru@test.com",
+                Password = "123456"
+
+            });
+            Console.WriteLine(result.Message);
+
         }
 
-        private static void ColorTest()
+        private static void CustomerAddTest()
         {
-            ColorManager colorManager = new ColorManager(new EfColorDal());
-            foreach (var color in colorManager.GetAll())
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            customerManager.Add(new Customer
             {
-                Console.WriteLine(color.Name);
-            }
-        }
+                UserId = 3,
+                CompanyName = "Akyürek Bolatlı Ltd. Şti."
 
-        private static void BrandTest()
-        {
-            BrandManager brandManager = new BrandManager(new EfBrandDal());
-            foreach (var brand in brandManager.GetAll())
-            {
-                Console.WriteLine(brand.Name);
-            }
-        }
-
-        private static void CarTest()
-        {
-            CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetAll())
-            {
-                Console.WriteLine(car.ModelYear);
-            }
+                
+            });
         }
 
     }
