@@ -63,9 +63,9 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.CarDailyPriceInvalid);
             }
         }
-        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails(int id)
         {
-        return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
+        return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(id));
         }
     }
 }
